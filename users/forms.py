@@ -13,4 +13,3 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = MyCustomUser
         fields = ("email",)
-        
