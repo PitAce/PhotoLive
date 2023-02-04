@@ -1,0 +1,10 @@
+*.log
+*.pot
+*.pyc
+__pycache__
+error_db.sqlite3
+media
+*.bak
+*.iws
+.env
+.DS_Store
