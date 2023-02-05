@@ -5,7 +5,7 @@ from .forms import RegistrationForm
 
 def registration_view(request):
 
-    template_name = 'registration/register.html'
+    template_name = 'register.html'
     context = {}
 
     if request.POST:
@@ -16,7 +16,7 @@ def registration_view(request):
             password = form.cleaned_data("password1")
             user = authenticate(email=email, password=password)
             login(request, user)
-            return redirect("home")
+            return redirect("base.html")
         else:
             context = {'form': form}
             return render(request, template_name, context)
