@@ -25,14 +25,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 
-# import environ
-# env = environ.Env(DEBUG=(bool, False))
-# environ.Env.read_env()
-# DEBUG = env('DEBUG')
-# SECRET_KEY = env('SECRET_KEY')
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -77,16 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'photo_live.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
