@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'users/base.html' %}
 
 {% block content %}
 
@@ -15,17 +15,19 @@
                         <div class="form-signin">
                             <form action="#" method="post">
                               {% for field in form %}
-                                <div class=" d-flex flex-row align-items-center mb-4">
+                                <div class=" d-flex flex-row align-items-center mb-1">
                                     <p>
                                         {{ field }}
+
+                                        {% for error in field.errors %}
+                                            <small style="color: red;">{{error}}</small><br>
+                                        {% endfor %}
 
                                         {% if field.help_text %}
                                             <small style="color: grey;">{{field.help_text}}</small>
                                         {% endif %}
 
-                                        {% for error in field.errors %}
-                                            <p style="color: red;">{{error}}</p>
-                                        {% endif %}
+
                                     </p>
                                 </div>
                               {% endfor %}
