@@ -1,7 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from .models import MyCustomUser
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -38,6 +38,22 @@ class RegistrationForm(UserCreationForm):
     class Meta:
         model = MyCustomUser
         fields = ("username", "email", "password1", "password2",)
+
+
+class AuthenticationUserForm(forms.Form):
+    email = forms.EmailField(
+        max_length=60,
+        help_text="Enter a your email",
+        widget=forms.EmailInput(attrs={"class": "form-control", 'placeholder': 'Email'}),
+    )
+    password = forms.CharField(
+        help_text="Enter your password",
+        widget=forms.PasswordInput(attrs={"class": "form-control", 'placeholder': 'Password'}),
+    )
+
+    class Meta:
+        model = MyCustomUser
+        fields = ("email", "password",)
 
 
 

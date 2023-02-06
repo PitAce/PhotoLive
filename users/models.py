@@ -13,7 +13,7 @@ class MyCustomUser(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
+    REQUIRED_FIELDS = ['username']
     objects = CustomUserManager()
 
     def __str__(self):
