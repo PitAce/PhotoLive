@@ -15,7 +15,7 @@ def registration_view(request):
             password = form.cleaned_data["password1"]
             user = authenticate(email=email, password=password)
             login(request, user)
-            return redirect("base.html")
+            return redirect("base")
         else:
             context = {'form': form}
             return render(request, template_name, context)
@@ -27,30 +27,28 @@ def registration_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('base.html')
+    return redirect("base")
 
 
 def login_view(request):
     template_name = 'users/login.html'
     context = {}
-
-    if request.Post:
+    if request.POST:
         form = AuthenticationUserForm(request.POST)
         if form.is_valid():
-            email = form.request.POST['email']
-            password = form.request.POST['password']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
             user = authenticate(email=email, password=password)
-
             if user:
                 login(request, user)
-                return redirect("base.html")
-            else:
-                context = {'form': form}
-                return render(request, template_name, context)
+                return redirect("base")
         else:
-            form = AuthenticationUserForm()
             context = {'form': form}
             return render(request, template_name, context)
+    else:
+        form = AuthenticationUserForm()
+        context = {'form': form}
+        return render(request, template_name, context)
 
 
 
