@@ -42,11 +42,11 @@ class RegistrationForm(UserCreationForm):
 
 class AuthenticationUserForm(AuthenticationForm):
     email = forms.EmailField(
-        help_text="Enter a vailed email address",
+        help_text="Enter a your email",
         widget=forms.EmailInput(attrs={"class": "form-control", 'placeholder': 'Email'}),
     )
     password = forms.CharField(
-        help_text="Enter a password",
+        help_text="Enter your password",
         widget=forms.PasswordInput(attrs={"class": "form-control", 'placeholder': 'Password'}),
     )
 
