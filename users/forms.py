@@ -1,19 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
-from .models import MyCustomUser
-from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from photo_live.models_app.models import MyCustomUser
 
 
-class CustomUserCreationForm(UserCreationForm):
 
-    class Meta:
-        model = MyCustomUser
-        fields = ("email",)
-
-class CustomUserChangeForm(UserChangeForm):
-    class Meta:
-        model = MyCustomUser
-        fields = ("email",)
 
 class RegistrationForm(UserCreationForm):
     username = forms.CharField(
