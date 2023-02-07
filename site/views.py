@@ -4,7 +4,7 @@ from .forms import RegistrationForm, AuthenticationUserForm
 
 
 def registration_view(request):
-    template_name = 'users/register.html'
+    template_name = 'site/register.html'
     context = {}
 
     if request.POST:
@@ -31,7 +31,7 @@ def logout_view(request):
 
 
 def login_view(request):
-    template_name = 'users/login.html'
+    template_name = 'site/login.html'
     context = {}
     if request.POST:
         form = AuthenticationUserForm(request.POST)

@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+
 from photo_live.models_app.models import MyCustomUser
+
 
 
 class RegistrationForm(UserCreationForm):
