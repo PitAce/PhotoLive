@@ -13,7 +13,3 @@ class CustomUserChangeForm(UserChangeForm):
         model = MyCustomUser
         fields = ("email",)
 
-
-
-
-
