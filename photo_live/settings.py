@@ -42,7 +42,11 @@ INSTALLED_APPS = [
 
     'social_django',
 ]
+
+
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
+SOCIAL_AUTH_GITHUB_KEY = config('GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = config('GITHUB_SECRET')
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
