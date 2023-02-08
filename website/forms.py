@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from photo_live.app_model.models import MyCustomUser
+from app_model.models import MyCustomUser
+
 
 
 class RegistrationForm(UserCreationForm):
@@ -25,7 +26,7 @@ class RegistrationForm(UserCreationForm):
     )
 
     class Meta:
-        model = MyCustomUser
+        model =  MyCustomUser
         fields = ("username", "email", "password1", "password2",)
 
 
