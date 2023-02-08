@@ -6,14 +6,14 @@ from django.utils.translation import gettext_lazy as _
 from .managers import CustomUserManager
 
 class MyCustomUser(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(_("username"), max_length=150) #, unique=True)
+    username = models.CharField(_("username"), max_length=150)
     email = models.EmailField(_("email address"), unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
 
-    USERNAME_FILED = "email"
-    REQUIRED_FIELDS = ["username"]
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ['username']
     objects = CustomUserManager()
 
     def __str__(self):
