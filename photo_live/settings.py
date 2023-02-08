@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 SOCIAL_AUTH_GITHUB_KEY = config('GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('GITHUB_SECRET')
+SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
@@ -68,7 +69,7 @@ ROOT_URLCONF = 'photo_live.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,3 +147,38 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "app_model.MyCustomUser"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'base'
+LOGOUT_REDIRECT_URL = 'base'
+
+
+LOGGING = {
+        'version': 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            'standard': {
+                'format': '[%(asctime)s] %(levelname)s: %(message)s'
+            },
+        },
+        'handlers': {
+            'console': {
+                "class": "logging.StreamHandler",
+                "formatter": "standard",
+                "level": "DEBUG",
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['console'],
+                'level': 'INFO',
+            },
+            'django.db.backends': {
+                'level': 'DEBUG',
+                'handlers': ['console'],
+                'propagate': False,
+            },
+        }
+    }
