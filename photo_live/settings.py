@@ -31,15 +31,29 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'app_model',
-    'website',
+    'app_model.apps.AppModelConfig',
+    'website.apps.WebsiteConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'social_django',
 ]
+
+
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+SOCIAL_AUTH_GITHUB_KEY = config('GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = config('GITHUB_SECRET')
+SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,7 +70,7 @@ ROOT_URLCONF = 'photo_live.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,6 +78,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -131,3 +148,40 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "app_model.MyCustomUser"
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'base'
+LOGOUT_REDIRECT_URL = 'base'
+
+
+LOGGING = {
+        'version': 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            'standard': {
+                'format': '[%(asctime)s] %(levelname)s: %(message)s'
+            },
+        },
+        'handlers': {
+            'console': {
+                "class": "logging.StreamHandler",
+                "formatter": "standard",
+                "level": "DEBUG",
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['console'],
+                'level': 'INFO',
+            },
+            'django.db.backends': {
+                'level': 'DEBUG',
+                'handlers': ['console'],
+                'propagate': False,
+            },
+        }
+    }
+
+

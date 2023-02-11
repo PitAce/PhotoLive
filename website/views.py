@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import RegistrationForm, AuthenticationUserForm
@@ -42,6 +43,10 @@ def login_view(request):
             if user:
                 login(request, user)
                 return redirect("base")
+            else:
+                context = {'form': form,
+                           'error_auth': 'Enter correct data!'}
+                return render(request, template_name, context)
         else:
             context = {'form': form}
             return render(request, template_name, context)

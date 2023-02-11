@@ -26,8 +26,14 @@ class RegistrationForm(UserCreationForm):
     )
 
     class Meta:
-        model =  MyCustomUser
+        model = MyCustomUser
         fields = ("username", "email", "password1", "password2",)
+
+    # def __init__(self, *args, **kwargs):
+    #     super(RegistrationForm, self).__init__(*args, **kwargs)
+    #     self.fields['username'].widget.attrs['class'] = 'form-control'
+    #     self.fields['username'].help_text = "enter name"
+    #     self.fields['username'].widget.attrs['placeholder'] = 'Enter your Name'
 
 
 class AuthenticationUserForm(forms.Form):
