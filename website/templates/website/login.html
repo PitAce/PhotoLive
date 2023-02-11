@@ -11,6 +11,12 @@
                             <h1>Log In</h1>
                         </div>
 
+                        {% if error_auth %}
+                            <div class="text-center mb-2 ">
+                                <small  style="color: red;">{{error_auth}}</small><br>
+                            </div>
+                        {% endif %}
+
                         <div class="form-signin">
                             <form action="{% url 'login' %}" method="post">
 

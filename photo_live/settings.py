@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'app_model.apps.AppModelConfig',
     'website.apps.WebsiteConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -147,8 +148,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "app_model.MyCustomUser"
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'base'
@@ -182,3 +183,5 @@ LOGGING = {
             },
         }
     }
+
+
