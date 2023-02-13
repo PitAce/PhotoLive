@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import os
 import sys
 from pathlib import Path
 
@@ -49,6 +50,9 @@ SOCIAL_AUTH_JSONFIELD_ENABLED = True
 SOCIAL_AUTH_GITHUB_KEY = config('GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('GITHUB_SECRET')
 SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
+
+# SOCIAL_AUTH_GITHUB_PROFILE_EXTRA_PARAMS = {'fields': 'id, name, avatar, email'}
+# SOCIAL_AUTH_GITHUB_EXTRA_DATA = [ ]
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
@@ -141,6 +145,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
