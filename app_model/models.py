@@ -18,3 +18,11 @@ class MyCustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(MyCustomUser, null=True, on_delete=models.CASCADE)
+    avatar = models.ImageField(null=True, default='default.jpg', upload_to='images/avatar/')
+
+    def __str__(self):
+        return self.user.usernsme
