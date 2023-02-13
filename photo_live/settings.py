@@ -163,33 +163,33 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'base'
 LOGOUT_REDIRECT_URL = 'base'
 
-
-LOGGING = {
-        'version': 1,
-        "disable_existing_loggers": False,
-        "formatters": {
-            'standard': {
-                'format': '[%(asctime)s] %(levelname)s: %(message)s'
-            },
-        },
-        'handlers': {
-            'console': {
-                "class": "logging.StreamHandler",
-                "formatter": "standard",
-                "level": "DEBUG",
-            },
-        },
-        'loggers': {
-            'django': {
-                'handlers': ['console'],
-                'level': 'INFO',
-            },
-            'django.db.backends': {
-                'level': 'DEBUG',
-                'handlers': ['console'],
-                'propagate': False,
-            },
-        }
-    }
+#
+# LOGGING = {
+#         'version': 1,
+#         "disable_existing_loggers": False,
+#         "formatters": {
+#             'standard': {
+#                 'format': '[%(asctime)s] %(levelname)s: %(message)s'
+#             },
+#         },
+#         'handlers': {
+#             'console': {
+#                 "class": "logging.StreamHandler",
+#                 "formatter": "standard",
+#                 "level": "DEBUG",
+#             },
+#         },
+#         'loggers': {
+#             'django': {
+#                 'handlers': ['console'],
+#                 'level': 'INFO',
+#             },
+#             'django.db.backends': {
+#                 'level': 'DEBUG',
+#                 'handlers': ['console'],
+#                 'propagate': False,
+#             },
+#         }
+#     }
 
 
