@@ -25,12 +25,13 @@
                    {% if user.is_authenticated %}
                         {{user.username}}
 
-                        {% if backends.associated%}
-                            <img src="https://github.com/{{user.username}}.png">
-                        {% else %}
-                            <img src="{{user.userprofile.avatar.url}}">
-                        {% endif %}
-
+                        <div class="col-md-2  px-4">
+                            {% if backends.associated%}
+                                <img src="https://github.com/{{user.username}}.png" class="rounded-circle" style="width: 70px;" alt="Avatar" >
+                            {% else %}
+                                <img src="{{user.userprofile.avatar.url}}" class="rounded-circle" style="width: 70px;" alt="Avatar" >
+                            {% endif %}
+                        </div>
                    {% endif %}
                 </div>
 
