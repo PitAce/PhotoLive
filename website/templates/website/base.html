@@ -25,6 +25,11 @@
                    {% if user.is_authenticated %}
                         {{user.username}}
 
+                        {% if backends.associated%}
+                            <img src="https://github.com/{{user.username}}.png">
+                        {% else %}
+                            <img src="{{user.userprofile.avatar.url}}">
+                        {% endif %}
 
                    {% endif %}
                 </div>
