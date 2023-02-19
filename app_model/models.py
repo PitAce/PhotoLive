@@ -3,6 +3,10 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.core.exceptions import ObjectDoesNotExist
+
 from .managers import CustomUserManager
 
 class MyCustomUser(AbstractBaseUser, PermissionsMixin):
@@ -17,8 +21,6 @@ class MyCustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     def __str__(self):
-        # print("--------------------------")
-        # print(self.__dict__)
         return self.email
 
 
@@ -28,3 +30,13 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+
+@receiver(post_save, sender=MyCustomUser)
+def create_user_profile(sender, instance, created, **kwargs):
+    try:
+        instance.userprofile.save()
+    except ObjectDoesNotExist:
+        UserProfile.objects.create(user=instance)
+
