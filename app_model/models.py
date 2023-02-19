@@ -17,12 +17,14 @@ class MyCustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     def __str__(self):
+        # print("--------------------------")
+        # print(self.__dict__)
         return self.email
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(MyCustomUser, null=True, on_delete=models.CASCADE)
-    avatar = models.ImageField(null=True, default='default.jpg', upload_to='images/avatar/')
+    avatar = models.ImageField(null=True, blank=True, default='default.jpg', upload_to='images/avatar/')
 
     def __str__(self):
-        return self.user.usernsme
+        return self.user.username

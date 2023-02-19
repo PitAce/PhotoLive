@@ -1,5 +1,6 @@
 from django.contrib.auth.base_user import BaseUserManager
 
+
 from django.utils.translation import gettext_lazy as _
 
 class CustomUserManager(BaseUserManager):
@@ -8,7 +9,6 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("Users mast have an email address!"))
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
-
         if password:
             user.set_password(password)
         user.save()
