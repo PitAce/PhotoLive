@@ -53,8 +53,8 @@ SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 
 # SOCIAL_AUTH_GITHUB_PROFILE_EXTRA_PARAMS = {'fields': 'id, name, avatar, email'}
 SOCIAL_AUTH_GITHUB_EXTRA_DATA = [
-('avatar_url', 'avatar_url'),
-('email', 'email'),
+        ('avatar_url', 'avatar_url'),
+        ('email', 'email'),
 ]
 
 AUTHENTICATION_BACKENDS = (
