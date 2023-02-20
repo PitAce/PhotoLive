@@ -52,7 +52,10 @@ SOCIAL_AUTH_GITHUB_SECRET = config('GITHUB_SECRET')
 SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 
 # SOCIAL_AUTH_GITHUB_PROFILE_EXTRA_PARAMS = {'fields': 'id, name, avatar, email'}
-# SOCIAL_AUTH_GITHUB_EXTRA_DATA = [ ]
+SOCIAL_AUTH_GITHUB_EXTRA_DATA = [
+('avatar_url', 'avatar_url'),
+('email', 'email'),
+]
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
@@ -134,11 +137,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -147,7 +147,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
