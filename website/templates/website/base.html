@@ -23,10 +23,21 @@
 
                 <div class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 link-dark text-decoration-none">
                    {% if user.is_authenticated %}
-                      {{user.username}}
-<!--                        <img src="https://github.com/{{user.username}}.png">-->
+                        {{user.username}}
+
+                        <div class="col-md-2  px-4">
+                            {% if backends.associated%}
+<!--                            <img src="https://github.com/{{user.username}}.png" class="rounded-circle" style="width: 70px;" alt="Avatar" >-->
+                                {% for author in backends.associated %}
+                                  <img src="{{ author.extra_data.avatar_url }}" class="rounded-circle" style="width: 70px;" alt="Avatar">
+                                {% endfor %}
+                            {% else %}
+                                <img src="{{user.userprofile.avatar.url}}" class="rounded-circle" style="width: 70px;" alt="Avatar" >
+                            {% endif %}
+                        </div>
                    {% endif %}
                 </div>
+
                 <div class="col-md-3 text-end">
                    {% if user.is_authenticated %}
                       <a class="nav-link px-2" href="{% url 'logout' %}">Logout</a>
@@ -42,6 +53,7 @@
 
 
 {% block content %}
+
 {% endblock %}
 
 

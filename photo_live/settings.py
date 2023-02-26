@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import os
 import sys
 from pathlib import Path
 
@@ -50,8 +51,15 @@ SOCIAL_AUTH_GITHUB_KEY = config('GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('GITHUB_SECRET')
 SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 
+# SOCIAL_AUTH_GITHUB_PROFILE_EXTRA_PARAMS = {'fields': 'id, name, avatar, email'}
+SOCIAL_AUTH_GITHUB_EXTRA_DATA = [
+        ('avatar_url', 'avatar_url'),
+        ('email', 'email'),
+]
+
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
+
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -129,11 +137,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -141,6 +146,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -155,33 +163,33 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'base'
 LOGOUT_REDIRECT_URL = 'base'
 
-
-LOGGING = {
-        'version': 1,
-        "disable_existing_loggers": False,
-        "formatters": {
-            'standard': {
-                'format': '[%(asctime)s] %(levelname)s: %(message)s'
-            },
-        },
-        'handlers': {
-            'console': {
-                "class": "logging.StreamHandler",
-                "formatter": "standard",
-                "level": "DEBUG",
-            },
-        },
-        'loggers': {
-            'django': {
-                'handlers': ['console'],
-                'level': 'INFO',
-            },
-            'django.db.backends': {
-                'level': 'DEBUG',
-                'handlers': ['console'],
-                'propagate': False,
-            },
-        }
-    }
+#
+# LOGGING = {
+#         'version': 1,
+#         "disable_existing_loggers": False,
+#         "formatters": {
+#             'standard': {
+#                 'format': '[%(asctime)s] %(levelname)s: %(message)s'
+#             },
+#         },
+#         'handlers': {
+#             'console': {
+#                 "class": "logging.StreamHandler",
+#                 "formatter": "standard",
+#                 "level": "DEBUG",
+#             },
+#         },
+#         'loggers': {
+#             'django': {
+#                 'handlers': ['console'],
+#                 'level': 'INFO',
+#             },
+#             'django.db.backends': {
+#                 'level': 'DEBUG',
+#                 'handlers': ['console'],
+#                 'propagate': False,
+#             },
+#         }
+#     }
 
 
