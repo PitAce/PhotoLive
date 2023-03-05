@@ -23,10 +23,14 @@ class MyCustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
+#selects an image by username:
+def user_avatar_directory_path(instance, *args, **kwargs):
+    return ('avatar/{0}.jpg'.format(instance.user.username))
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(MyCustomUser, null=True, on_delete=models.CASCADE)
-    avatar = models.ImageField(null=True, blank=True, default='default.jpg', upload_to='images/avatar/')
+    avatar = models.ImageField(null=True, blank=True, default='default.jpg', upload_to=user_avatar_directory_path)
 
     def __str__(self):
         return self.user.username
