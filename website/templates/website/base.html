@@ -24,16 +24,8 @@
                 <div class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 link-dark text-decoration-none">
                    {% if user.is_authenticated %}
                         {{user.username}}
-
                         <div class="col-md-2  px-4">
-                            {% if backends.associated%}
-<!--                            <img src="https://github.com/{{user.username}}.png" class="rounded-circle" style="width: 70px;" alt="Avatar" >-->
-                                {% for author in backends.associated %}
-                                  <img src="{{ author.extra_data.avatar_url }}" class="rounded-circle" style="width: 70px;" alt="Avatar">
-                                {% endfor %}
-                            {% else %}
-                                <img src="{{user.userprofile.avatar.url}}" class="rounded-circle" style="width: 70px;" alt="Avatar" >
-                            {% endif %}
+                            <img src="{{user.userprofile.avatar.url}}" class="rounded-circle" style="width: 70px;" alt="Avatar" >
                         </div>
                    {% endif %}
                 </div>
