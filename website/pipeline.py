@@ -4,9 +4,9 @@ from io import BytesIO
 from urllib.parse import urlparse
 
 def get_avatar_img(backend, user, response, *args, **kwargs):
-    if backend.name == 'github' and not user.userprofile.avatar:
-        # import pdb
-        # pdb.set_trace()
+
+    if backend.name == 'github' and (user.userprofile.avatar == 'default.jpg' or not user.userprofile.avatar):
+
         avatar_url = urlparse(response['avatar_url'])
         filename = avatar_url.path.split('/')[-1]
 
