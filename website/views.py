@@ -66,8 +66,10 @@ def edit_user_profile_view(request):
         profile_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
         if user_form.is_valid() and profile_form.is_valid():
             user = MyCustomUser.objects.get(id=request.user.id)
+
             if user.userprofile.avatar and request.FILES:
                 user.userprofile.avatar.delete()
+                # This for save image with called username from 'form'
                 # user.userprofile.avatar.save(f"{request.POST['username']}.{img_format}", request.FILES['avatar'].file)
             user_form.save()
             # profile_form.save()
