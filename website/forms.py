@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from app_model.models import MyCustomUser
-
+from app_model.models import MyCustomUser, UserProfile
 
 
 class RegistrationForm(UserCreationForm):
@@ -52,4 +51,24 @@ class AuthenticationUserForm(forms.Form):
         fields = ("email", "password",)
 
 
+class UpdateUserForm(forms.ModelForm):
+    username = forms.CharField(required=True,
+                               label="Username:",
+                               widget=forms.TextInput(attrs={'class': 'form-control'}),)
+    email = forms.EmailField(max_length=60,
+                             required=True,
+                             label="Email:",
+                             widget=forms.EmailInput(attrs={"class": "form-control"}),)
+
+    class Meta:
+        model = MyCustomUser
+        fields = ['username', 'email']
+
+class UpdateUserProfileForm(forms.ModelForm):
+    avatar = forms.ImageField(label="Avatar:",
+                              widget=forms.FileInput(attrs={'class': 'form-control-file'}),)
+
+    class Meta:
+        model = UserProfile
+        fields = ['avatar']
 
