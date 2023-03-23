@@ -29,7 +29,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
-# Application definition
+        # Application definition
 
 INSTALLED_APPS = [
     'app_model.apps.AppModelConfig',
@@ -43,23 +43,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'social_django',
+    'imagekit',
 ]
 
-
+        # Settings SOCIAL AUTH
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 SOCIAL_AUTH_GITHUB_KEY = config('GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('GITHUB_SECRET')
 SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
-
 # SOCIAL_AUTH_GITHUB_PROFILE_EXTRA_PARAMS = {'fields': 'id, name, avatar, email'}
-SOCIAL_AUTH_GITHUB_EXTRA_DATA = [
-        ('avatar_url', 'avatar_url'),
-        ('email', 'email'),
-]
+SOCIAL_AUTH_GITHUB_EXTRA_DATA = [('avatar_url', 'avatar_url'), ('email', 'email'),]
 
+        # Settings IMAGEKIT
+IMAGEKIT_CACHEFILE_DIR = ''
+
+
+        #----------------
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
-
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -97,13 +98,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'photo_live.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
+        # Settings DATABASES
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -115,9 +110,7 @@ DATABASES = {
     }
 }
 
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
+        # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -134,28 +127,23 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
-
+        # Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
+        # Media and Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
+        # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+        # Custom settings
 AUTH_USER_MODEL = "app_model.MyCustomUser"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
