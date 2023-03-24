@@ -7,11 +7,24 @@ from django.core.exceptions import ObjectDoesNotExist
 from app_model.models.my_custom_user import MyCustomUser
 from utils.file_uploader import uploaded_file_path, skip_saving_file, save_file
 
+from imagekit.models.fields import ImageSpecField
+from imagekit.processors import ResizeToFit, ResizeToFill
 
 class UserProfile(models.Model):
     user = models.OneToOneField(MyCustomUser, null=True, on_delete=models.CASCADE)
     avatar = models.ImageField(null=True, blank=True, default='default.jpg', upload_to=uploaded_file_path)
-
+    avatar_small = ImageSpecField(source='avatar',
+                                  processors=[ResizeToFill(50, 50)],
+                                  format='JPEG',
+                                  options={'quality': 60})
+    avatar_medium = ImageSpecField(source='avatar',
+                                  processors=[ResizeToFit(100, 100)],
+                                  format='JPEG',
+                                  options={'quality': 90})
+    avatar_big = ImageSpecField(source='avatar',
+                                  processors=[ResizeToFit(180, 160)],
+                                  format='JPEG',
+                                  options={'quality': 60})
     def __str__(self):
         return self.user.username
 
