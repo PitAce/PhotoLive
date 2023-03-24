@@ -1,3 +1,6 @@
+import os.path
+import shutil
+
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
@@ -70,6 +73,11 @@ def edit_user_profile_view(request):
         profile_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
         if user_form.is_valid() and profile_form.is_valid():
             user = MyCustomUser.objects.get(id=request.user.id)
+                # for delete old thumbnail avatar that was maked imagekit
+            path_old_avatar_imgkit = os.path.splitext(user.userprofile.avatar.name)[0]
+            shutil.rmtree('media/' + path_old_avatar_imgkit, ignore_errors=True)  # delete dir with all old thumbnail avatar
+            from imagekit.utils import get_cache
+            get_cache().clear()
 
             if user.userprofile.avatar and request.FILES:
                 user.userprofile.avatar.delete()
