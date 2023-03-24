@@ -17,14 +17,16 @@ class UserProfile(models.Model):
                                   processors=[ResizeToFill(50, 50)],
                                   format='JPEG',
                                   options={'quality': 60})
+
     avatar_medium = ImageSpecField(source='avatar',
                                   processors=[ResizeToFit(100, 100)],
                                   format='JPEG',
                                   options={'quality': 90})
+
     avatar_big = ImageSpecField(source='avatar',
                                   processors=[ResizeToFit(180, 160)],
                                   format='JPEG',
-                                  options={'quality': 60})
+                                  options={'quality': 90})
     def __str__(self):
         return self.user.username
 
