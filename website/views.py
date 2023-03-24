@@ -63,7 +63,7 @@ def login_view(request):
 
 
 def user_profile(request):
-    user_avatar = UserProfile.objects.get(id=request.user.id)
+    user_avatar = UserProfile.objects.get(user_id=request.user.id)
     return render(request, 'website/profile.html', {'user_avatar': user_avatar})
 
 @login_required
