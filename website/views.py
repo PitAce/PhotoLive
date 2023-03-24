@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
-from app_model.models import MyCustomUser
+from app_model.models import MyCustomUser, UserProfile
 from .forms import RegistrationForm, AuthenticationUserForm, UpdateUserForm, UpdateUserProfileForm
 
 
@@ -58,6 +58,10 @@ def login_view(request):
         context = {'form': form}
         return render(request, template_name, context)
 
+
+def user_profile(request):
+    user_avatar = UserProfile.objects.get(id=request.user.id)
+    return render(request, 'website/profile.html', {'user_avatar': user_avatar})
 
 @login_required
 def edit_user_profile_view(request):
