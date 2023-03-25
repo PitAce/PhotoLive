@@ -73,14 +73,15 @@ def edit_user_profile_view(request):
         profile_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
         if user_form.is_valid() and profile_form.is_valid():
             user = MyCustomUser.objects.get(id=request.user.id)
-                # for delete old thumbnail avatar that was maked imagekit
-            path_old_avatar_imgkit = os.path.splitext(user.userprofile.avatar.name)[0]
-            shutil.rmtree('media/' + path_old_avatar_imgkit, ignore_errors=True)  # delete dir with all old thumbnail avatar
-            from imagekit.utils import get_cache
-            get_cache().clear()
-
             if user.userprofile.avatar and request.FILES:
-                user.userprofile.avatar.delete()
+                    # for delete old thumbnail avatar that was maked imagekit
+                path_old_avatar_imgkit = os.path.splitext(user.userprofile.avatar.name)[0]
+                shutil.rmtree('media/' + path_old_avatar_imgkit, ignore_errors=True)  # delete dir with all old thumbnail avatar
+                from imagekit.utils import get_cache
+                get_cache().clear()
+
+                if user.userprofile.avatar != 'default.jpg':
+                    user.userprofile.avatar.delete()
                 # This for save image with called username from 'form'
                 # user.userprofile.avatar.save(f"{request.POST['username']}.{img_format}", request.FILES['avatar'].file)
             user_form.save()
