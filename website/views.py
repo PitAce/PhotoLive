@@ -6,9 +6,14 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
-from app_model.models import MyCustomUser, UserProfile
+from app_model.models import MyCustomUser, UserProfile, UserImages
 from .forms import RegistrationForm, AuthenticationUserForm, UpdateUserForm, UpdateUserProfileForm, UserImagesForm
 
+
+def base_view(request):
+    template_name = 'website/base.html'
+    user_photo = UserImages.objects.all()
+    return render(request, template_name, {'user_photo': user_photo})
 
 def registration_view(request):
     template_name = 'website/register.html'
