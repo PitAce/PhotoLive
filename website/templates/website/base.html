@@ -25,7 +25,11 @@
                    {% if user.is_authenticated %}
                         {{user.username}}
                         <div class="col-md-2  px-4">
-                            <img src="{{user.userprofile.avatar.url}}" class="rounded-circle" style="width: 70px;" alt="Avatar" >
+                            {% if user.userprofile.avatar %}
+                                <img src="{{user.userprofile.avatar_small.url}}" class="rounded-circle" style="width: 70px;" alt="Avatar" >
+                            {% else %}
+                                <img src="media/default.jpg" class="rounded-circle" style="width: 50px;" alt="Avatar" >
+                            {% endif %}
                         </div>
                    {% endif %}
                 </div>
