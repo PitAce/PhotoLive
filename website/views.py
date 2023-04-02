@@ -107,6 +107,9 @@ def edit_user_profile_view(request):
     return render(request, 'website/edit_profile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
+def show_details_photo(request, pk):
+    photo = UserImages.objects.get(pk=pk)
+    return render(request, 'website/details_photo', {'photo': photo})
 
 
 
