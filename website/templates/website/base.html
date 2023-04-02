@@ -70,7 +70,7 @@
         {% for img in user_photo %}
             <div class="col-lg-4">
                 <div class="card">
-                   <a href="{% url 'details_photo' pk=img.id %}" data-toggle="tooltip" title="{{img.description}}" class="fancylight popup-btn" data-fancybox-group="light">
+                   <a href="{% url 'details_photo' pk=img.id %}" data-toggle="tooltip" title="{{img.description}}">
                       <img class="card-img-top" src="{{img.image.url}}" alt="{{img.title}}">
                    </a>
                     <div class="card-body">

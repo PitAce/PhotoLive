@@ -109,7 +109,7 @@ def edit_user_profile_view(request):
 
 def show_details_photo(request, pk):
     photo = UserImages.objects.get(pk=pk)
-    return render(request, 'website/details_photo', {'photo': photo})
+    return render(request, 'website/details_photo.html', {'photo': photo})
 
 
 
