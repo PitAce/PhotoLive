@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from app_model.models import MyCustomUser, UserProfile
+from app_model.models import MyCustomUser, UserProfile, UserImages
 
 
 class RegistrationForm(UserCreationForm):
@@ -72,3 +72,13 @@ class UpdateUserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['avatar']
 
+
+class UserImagesForm(forms.ModelForm):
+    class Meta:
+        model = UserImages
+        fields = ('title', 'image', 'description')
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control-file'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+        }
