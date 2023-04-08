@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from app_model.models import MyCustomUser, UserProfile, UserImages
+from app_model.models import MyCustomUser, UserProfile, UserPhoto
 
 
 class RegistrationForm(UserCreationForm):
@@ -75,7 +75,7 @@ class UpdateUserProfileForm(forms.ModelForm):
 
 class UserImagesForm(forms.ModelForm):
     class Meta:
-        model = UserImages
+        model = UserPhoto
         fields = ('title', 'image', 'description')
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),

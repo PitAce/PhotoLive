@@ -4,7 +4,7 @@ from app_model.models.my_custom_user import MyCustomUser
 from django.core.validators import FileExtensionValidator
 
 
-class UserImages(models.Model):
+class UserPhoto(models.Model):
     user = models.ForeignKey(MyCustomUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, blank=False)
     image = models.ImageField(upload_to='images/', blank=False, validators=[FileExtensionValidator(allowed_extensions=['jpeg','jpg'])])
