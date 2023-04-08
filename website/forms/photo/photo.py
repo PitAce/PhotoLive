@@ -1,9 +1,9 @@
 from django import forms
-from app_model.models import UserPhoto
+from app_model.models import Photo
 
 class UserPhotoForm(forms.ModelForm):
     class Meta:
-        model = UserPhoto
+        model = Photo
         fields = ('title', 'image', 'description')
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),

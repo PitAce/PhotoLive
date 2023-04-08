@@ -6,13 +6,13 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
-from app_model.models import MyCustomUser, UserProfile, UserPhoto
-from .form import RegistrationForm, AuthenticationUserForm, UpdateUserForm, UpdateUserAvatarForm, UserPhotoForm
+from app_model.models import MyCustomUser, UserProfile, Photo
+from .forms import RegistrationForm, AuthenticationUserForm, UpdateUserForm, UpdateUserAvatarForm, UserPhotoForm
 
 
 def base_view(request):
     template_name = 'website/base.html'
-    user_photo = UserPhoto.objects.all()
+    user_photo = Photo.objects.all()
     return render(request, template_name, {'user_photo': user_photo})
 
 def registration_view(request):
@@ -108,7 +108,7 @@ def edit_user_profile_view(request):
 
 
 def show_details_photo(request, pk):
-    photo = UserPhoto.objects.get(pk=pk)
+    photo = Photo.objects.get(pk=pk)
     return render(request, 'website/details_photo.html', {'photo': photo})
 
 
