@@ -73,12 +73,12 @@ from app_model.models import MyCustomUser, UserProfile, UserPhoto
 #         fields = ['avatar']
 
 
-class UserImagesForm(forms.ModelForm):
-    class Meta:
-        model = UserPhoto
-        fields = ('title', 'image', 'description')
-        widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'image': forms.FileInput(attrs={'class': 'form-control-file'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
-        }
+# class UserImagesForm(forms.ModelForm):
+#     class Meta:
+#         model = UserPhoto
+#         fields = ('title', 'image', 'description')
+#         widgets = {
+#             'title': forms.TextInput(attrs={'class': 'form-control'}),
+#             'image': forms.FileInput(attrs={'class': 'form-control-file'}),
+#             'description': forms.Textarea(attrs={'class': 'form-control'}),
+#         }
