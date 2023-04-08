@@ -50,6 +50,39 @@
 
 {% block content %}
 
+
+ <div class="container">
+     <div class="row">
+        <div class="col-lg-12 text-center my-2">
+            <h4>Users Photos</h4>
+        </div>
+     </div>
+
+     <div class="portfolio-menu mt-2 mb-4">
+        <ul>
+           <li class="btn btn-outline-dark active">All</li>
+           <li class="btn btn-outline-dark">like</li>
+           <li class="btn btn-outline-dark">Comments</li>
+        </ul>
+     </div>
+
+    <div class="row">
+        {% for img in user_photo %}
+            <div class="col-lg-4">
+                <div class="card">
+                   <a href="{% url 'details_photo' pk=img.id %}" data-toggle="tooltip" title="{{img.description}}">
+                      <img class="card-img-top" src="{{img.image.url}}" alt="{{img.title}}">
+                   </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{img.title}}</h5>
+                        <a href="#!" class="btn btn-outline-dark">like</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+ </div>
+
 {% endblock %}
 
 

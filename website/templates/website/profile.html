@@ -21,6 +21,24 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-xl-3">
+            <div class="card mb-4 mb-xl-0 text-center">
+                <div class="card-header font-italic mb-2">Add new photo</div>
+                <div class="card-body text-center">
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-primary" type="submit">Upload</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 {% else %}
 <section class="vh-100">

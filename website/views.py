@@ -6,9 +6,14 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
-from app_model.models import MyCustomUser, UserProfile
-from .forms import RegistrationForm, AuthenticationUserForm, UpdateUserForm, UpdateUserProfileForm
+from app_model.models import MyCustomUser, UserProfile, UserImages
+from .forms import RegistrationForm, AuthenticationUserForm, UpdateUserForm, UpdateUserProfileForm, UserImagesForm
 
+
+def base_view(request):
+    template_name = 'website/base.html'
+    user_photo = UserImages.objects.all()
+    return render(request, template_name, {'user_photo': user_photo})
 
 def registration_view(request):
     template_name = 'website/register.html'
@@ -61,10 +66,19 @@ def login_view(request):
         context = {'form': form}
         return render(request, template_name, context)
 
-
+@login_required
 def user_profile(request):
     user_avatar = UserProfile.objects.get(user_id=request.user.id)
-    return render(request, 'website/profile.html', {'user_avatar': user_avatar})
+    if request.method == 'POST':
+        form = UserImagesForm(request.POST, request.FILES)
+        if form.is_valid():
+            user_img = form.save(commit=False)
+            user_img.user = request.user
+            user_img.save()
+            return redirect(to='base')
+    else:
+        form = UserImagesForm()
+    return render(request, 'website/profile.html', {'user_avatar': user_avatar, 'form': form})
 
 @login_required
 def edit_user_profile_view(request):
@@ -93,6 +107,9 @@ def edit_user_profile_view(request):
     return render(request, 'website/edit_profile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
+def show_details_photo(request, pk):
+    photo = UserImages.objects.get(pk=pk)
+    return render(request, 'website/details_photo.html', {'photo': photo})
 
 
 
