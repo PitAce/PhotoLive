@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
 from app_model.models import MyCustomUser, UserProfile, UserPhoto
-from .forms import RegistrationForm, AuthenticationUserForm, UpdateUserForm, UpdateUserProfileForm, UserImagesForm
+from .form import RegistrationForm, AuthenticationUserForm, UpdateUserForm, UpdateUserAvatarForm, #UserImagesForm
 
 
 def base_view(request):
@@ -84,7 +84,7 @@ def user_profile(request):
 def edit_user_profile_view(request):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
-        profile_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+        profile_form = UpdateUserAvatarForm(request.POST, request.FILES, instance=request.user.userprofile)
         if user_form.is_valid() and profile_form.is_valid():
             user = MyCustomUser.objects.get(id=request.user.id)
             if user.userprofile.avatar and request.FILES:
@@ -103,7 +103,7 @@ def edit_user_profile_view(request):
             return redirect(to='base')
     else:
         user_form = UpdateUserForm(instance=request.user)
-        profile_form = UpdateUserProfileForm(instance=request.user.userprofile)
+        profile_form = UpdateUserAvatarForm(instance=request.user.userprofile)
     return render(request, 'website/edit_profile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 

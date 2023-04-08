@@ -35,42 +35,42 @@ from app_model.models import MyCustomUser, UserProfile, UserPhoto
     #     self.fields['username'].widget.attrs['placeholder'] = 'Enter your Name'
 
 
-class AuthenticationUserForm(forms.Form):
-    email = forms.EmailField(
-        max_length=60,
-        help_text="Enter a your email",
-        widget=forms.EmailInput(attrs={"class": "form-control", 'placeholder': 'Email'}),
-    )
-    password = forms.CharField(
-        help_text="Enter your password",
-        widget=forms.PasswordInput(attrs={"class": "form-control", 'placeholder': 'Password'}),
-    )
+# class AuthenticationUserForm(forms.Form):
+#     email = forms.EmailField(
+#         max_length=60,
+#         help_text="Enter a your email",
+#         widget=forms.EmailInput(attrs={"class": "form-control", 'placeholder': 'Email'}),
+#     )
+#     password = forms.CharField(
+#         help_text="Enter your password",
+#         widget=forms.PasswordInput(attrs={"class": "form-control", 'placeholder': 'Password'}),
+#     )
+#
+#     class Meta:
+#         model = MyCustomUser
+#         fields = ("email", "password",)
 
-    class Meta:
-        model = MyCustomUser
-        fields = ("email", "password",)
 
+# class UpdateUserForm(forms.ModelForm):
+#     username = forms.CharField(required=True,
+#                                label="Username:",
+#                                widget=forms.TextInput(attrs={'class': 'form-control'}),)
+#     email = forms.EmailField(max_length=60,
+#                              required=True,
+#                              label="Email:",
+#                              widget=forms.EmailInput(attrs={"class": "form-control"}),)
+#
+#     class Meta:
+#         model = MyCustomUser
+#         fields = ['username', 'email']
 
-class UpdateUserForm(forms.ModelForm):
-    username = forms.CharField(required=True,
-                               label="Username:",
-                               widget=forms.TextInput(attrs={'class': 'form-control'}),)
-    email = forms.EmailField(max_length=60,
-                             required=True,
-                             label="Email:",
-                             widget=forms.EmailInput(attrs={"class": "form-control"}),)
-
-    class Meta:
-        model = MyCustomUser
-        fields = ['username', 'email']
-
-class UpdateUserProfileForm(forms.ModelForm):
-    avatar = forms.ImageField(label="Avatar:",
-                              widget=forms.FileInput(attrs={'class': 'form-control-file'}),)
-
-    class Meta:
-        model = UserProfile
-        fields = ['avatar']
+# class UpdateUserProfileForm(forms.ModelForm):
+#     avatar = forms.ImageField(label="Avatar:",
+#                               widget=forms.FileInput(attrs={'class': 'form-control-file'}),)
+#
+#     class Meta:
+#         model = UserProfile
+#         fields = ['avatar']
 
 
 class UserImagesForm(forms.ModelForm):
