@@ -2,13 +2,14 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 from .views import (UserLogoutView, BaseView, LoginView,
-                    registration_view, ShowDetailsPhoto,
+                    RegistrationView, ShowDetailsPhoto, #registration_view,
                     edit_user_profile_view,
                     user_profile)
 
 urlpatterns = [
     path('', BaseView.as_view()),
-    path('register/', registration_view, name='register'),
+    # path('register/', registration_view, name='register'),
+    path('register/', RegistrationView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
     path('profile/', user_profile, name='profile'),
