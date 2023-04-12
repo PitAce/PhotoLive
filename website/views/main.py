@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView
-from app_model.models import Photo
+
+from app_model.models.photo.model import Photo
 
 
 class BaseView(ListView):

@@ -3,7 +3,7 @@ import shutil
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from app_model.models import MyCustomUser, UserProfile, Photo
+from app_model.models import MyCustomUser, UserProfile
 from website.forms import UpdateUserForm, UpdateUserAvatarForm
 
 

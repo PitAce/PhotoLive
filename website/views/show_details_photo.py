@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView, DetailView
-from app_model.models import Photo
+from app_model.models.photo.model import Photo
+
 
 class ShowDetailsPhoto(DetailView):
     model = Photo
@@ -22,7 +23,7 @@ class ShowDetailsPhoto(DetailView):
 
 # class ShowDetailsPhoto(TemplateView):
 #     template_name = 'website/details_photo.html'
-
+#
 #     def get(self, request, *args, **kwargs):
 #         photo = Photo.objects.get(id=kwargs['pk'])
 #         return render(request, self.template_name, {'photo': photo})

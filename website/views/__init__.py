@@ -1,6 +1,6 @@
 # import website.views
 # from base import BaseView
-from website.views.base import BaseView
+from website.views.main import BaseView
 from website.views.logout import UserLogoutView
 from website.views.registration import RegistrationView #registration_view
 from website.views.login import LoginView
