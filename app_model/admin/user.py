@@ -1,9 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .forms import UserCreateForm, UserUpdateForm
-from .models import MyCustomUser, UserProfile
-from .models.photo.model import Photo
+from app_model.forms import UserCreateForm, UserUpdateForm
+from app_model.models import MyCustomUser
 
 
 class CustomUserAdmin(UserAdmin):
@@ -29,6 +28,3 @@ class CustomUserAdmin(UserAdmin):
     ordering = ("email", "username")
 
 admin.site.register(MyCustomUser, CustomUserAdmin)
-
-admin.site.register(UserProfile)
-admin.site.register(Photo)
