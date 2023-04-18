@@ -8,6 +8,8 @@ class ShowDetailsPhoto(DetailView):
     template_name = 'website/details_photo.html'
     context_object_name = 'photo'
     pk_url_kwarg = 'pk'
+
+
     # context_object_name = 'post'
 
 
