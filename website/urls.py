@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 
 from .views import (UserLogoutView, BaseView, UserLoginView,
                     UserRegistrationView, ShowDetailsPhoto,  # registration_view,
-                    edit_user_profile_view, UserProfileView,
+                    EditUserProfileView, UserProfileView,
                     )  # user_profile)
 
 
@@ -16,7 +16,7 @@ urlpatterns = [
     path('logout/', UserLogoutView.as_view(), name='logout'),
     path('profile/', login_required(UserProfileView.as_view()), name='profile'),
     path('photo/<int:pk>/', ShowDetailsPhoto.as_view(), name='details_photo'),
-    path('edit_profile/', edit_user_profile_view, name='edit_profile'),
+    path('edit_profile/', login_required(EditUserProfileView.as_view()), name='edit_profile'),
 
     path('social-auth/', include('social_django.urls', namespace='social')),
 ]

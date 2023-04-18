@@ -12,6 +12,7 @@ class UserLoginView(View):
         form = AuthenticationUserForm()
         context = {'form': form}
         return render(request, self.template_name, context)
+
     def post(self, request):
         form = AuthenticationUserForm(request.POST)
         if form.is_valid():
