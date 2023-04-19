@@ -9,9 +9,9 @@ class UserProfileView(View):
     template_name = 'website/profile.html'
 
     def get(self, request):
-        user_avatar = UserProfile.objects.get(user_id=request.user.id)
+        # user_avatar = UserProfile.objects.get(user_id=request.user.id)
         form = UploadPhotoForm()
-        return render(request, self.template_name, {'user_avatar': user_avatar, 'form': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         # user_avatar = UserProfile.objects.get(user_id=request.user.id)

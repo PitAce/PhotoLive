@@ -10,7 +10,6 @@ from .views import (UserLogoutView, BaseView, UserLoginView,
 
 urlpatterns = [
     path('', BaseView.as_view()),
-    # path('register/', registration_view, name='register'),
     path('register/', UserRegistrationView.as_view(), name='register'),
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
