@@ -1,14 +1,15 @@
 from django.shortcuts import render
+from django.views import View
 from django.views.generic import ListView, TemplateView, DetailView
 from app_model.models.photo.model import Photo
 
 
-class ShowDetailsPhoto(DetailView):
-    model = Photo
+class ShowDetailsPhotoView(View):
     template_name = 'website/details_photo.html'
-    context_object_name = 'photo'
-    pk_url_kwarg = 'pk'
 
+    def get(self, request, *args, **kwargs):
+        photo = Photo.objects.get(id=kwargs['pk'])
+        return render(request, self.template_name, {'photo': photo})
 
     # context_object_name = 'post'
 
@@ -29,3 +30,10 @@ class ShowDetailsPhoto(DetailView):
 #     def get(self, request, *args, **kwargs):
 #         photo = Photo.objects.get(id=kwargs['pk'])
 #         return render(request, self.template_name, {'photo': photo})
+
+
+# class ShowDetailsPhoto(DetailView):
+#     model = Photo
+#     template_name = 'website/details_photo.html'
+#     context_object_name = 'photo'
+#     pk_url_kwarg = 'pk'

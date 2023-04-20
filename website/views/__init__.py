@@ -6,4 +6,4 @@ from website.views.registration import UserRegistrationView #registration_view
 from website.views.login import UserLoginView
 from website.views.user_profile import UserProfileView #user_profile
 from website.views.edit_user_profile import EditUserProfileView #edit_user_profile_view
-from website.views.show_details_photo import ShowDetailsPhoto
+from website.views.show_details_photo import ShowDetailsPhotoView
