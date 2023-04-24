@@ -4,7 +4,7 @@ from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.core.exceptions import ObjectDoesNotExist
 
-from app_model.models.my_custom_user import MyCustomUser
+from app_model.models.user.my_custom_user import MyCustomUser
 from utils.file_uploader import uploaded_file_path, skip_saving_file, save_file
 
 from imagekit.models.fields import ImageSpecField

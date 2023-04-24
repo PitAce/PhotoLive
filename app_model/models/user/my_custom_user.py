@@ -3,7 +3,8 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from app_model.managers import CustomUserManager
+from app_model.models.user.manager import UserManager
+
 
 
 class MyCustomUser(AbstractBaseUser, PermissionsMixin):
@@ -15,7 +16,7 @@ class MyCustomUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['username']
-    objects = CustomUserManager()
+    objects = UserManager()
 
     def __str__(self):
         return self.email

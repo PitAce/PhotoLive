@@ -1,0 +1,11 @@
+
+<div class="col-lg-4">
+    <div class="card">
+       <a href="{% url 'details_photo' pk=img.id %}" data-toggle="tooltip" title="{{img.description}}">
+          <img class="card-img-top" src="{{img.image.url}}" alt="{{img.title}}">
+       </a>
+
+       {% include 'includes/photo/photo_info.html' %}
+
+    </div>
+</div>

@@ -1,0 +1,33 @@
+
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="{% url 'base' %}" class="nav-link px-2 link-secondary">Home</a></li>
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'profile' %}" class="nav-link px-2 link-dark">Profile</a></li>
+            {% endif %}
+<!--                    <li><a href="#" class="nav-link px-2 link-dark">About</a></li>-->
+    </ul>
+
+
+    <div class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 link-dark text-decoration-none">
+       {% if user.is_authenticated %}
+            {{user.username}}
+            <div class="col-md-2  px-4">
+                {% if user.userprofile.avatar %}
+                    <img src="{{user.userprofile.avatar_small.url}}" class="rounded-circle" style="width: 70px;" alt="Avatar" >
+                {% else %}
+                    <img src="media/default.jpg" class="rounded-circle" style="width: 50px;" alt="Avatar" >
+                {% endif %}
+            </div>
+       {% endif %}
+    </div>
+
+    <div class="col-md-3 text-end">
+       {% if user.is_authenticated %}
+          <a class="nav-link px-2" href="{% url 'logout' %}">Logout</a>
+       {% else %}
+          <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
+          <a href="{% url 'register' %}" class="btn btn-primary">Sign-up</a>
+       {% endif %}
+    </div>
+</header>
