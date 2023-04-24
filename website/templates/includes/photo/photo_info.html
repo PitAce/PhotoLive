@@ -2,5 +2,15 @@
 <div class="card-body">
     <h5 class="card-title">{{img.title}}</h5>
     <p class="text-muted">Author: {{img.user.username}}</p>
-    <a href="#!" class="btn btn-outline-dark">like</a>
+    <p class="text-muted">Date of created: #</p>
+    <p class="text-muted">Comments: #</p>
+
+    {% if user.is_authenticated %}
+    <form action="{% url 'like' photo_pk=img.id %}" method="POST">
+        {% csrf_token %}
+        <div><button class="btn btn-outline-dark" type="submit">like</button> : {{img.like_count}}</div>
+    </form>
+    {% else %}
+    <p>like: {{img.like_count}}</p>
+    {% endif %}
 </div>
