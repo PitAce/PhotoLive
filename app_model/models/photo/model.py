@@ -13,3 +13,7 @@ class Photo(models.Model):
 
     def __str__(self):
         return self.title
+
+    def like_count(self):
+        number_of_likes = self.like_set.all().count()
+        return number_of_likes
