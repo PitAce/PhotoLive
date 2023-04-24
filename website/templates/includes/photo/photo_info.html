@@ -4,7 +4,7 @@
     <p class="text-muted">Author: {{img.user.username}}</p>
 
     {% if user.is_authenticated %}
-    <form action="{% url 'like' photo_pk=img.id %}" >
+    <form action="{% url 'like' photo_pk=img.id %}" method="POST">
         {% csrf_token %}
         <div><button class="btn btn-outline-dark" type="submit">like</button> : {{img.like_count}}</div>
     </form>

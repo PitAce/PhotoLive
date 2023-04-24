@@ -1,11 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
-from django.views.generic import TemplateView
 
 from .views import (UserLogoutView, BaseView, UserLoginView,
-                    UserRegistrationView, ShowDetailsPhotoView,  # registration_view,
-                    EditUserProfileView, UserProfileView,
-                    )  # user_profile)
+                    UserRegistrationView, ShowDetailsPhotoView,
+                    EditUserProfileView, UserProfileView, LikeView
+                    )
 
 
 urlpatterns = [
@@ -16,6 +15,7 @@ urlpatterns = [
     path('profile/', login_required(UserProfileView.as_view()), name='profile'),
     path('photo/<int:pk>/', ShowDetailsPhotoView.as_view(), name='details_photo'),
     path('edit_profile/', login_required(EditUserProfileView.as_view()), name='edit_profile'),
+    path('like/<int:photo_pk>/', LikeView.as_view(), name='like'),
 
     path('social-auth/', include('social_django.urls', namespace='social')),
 ]
