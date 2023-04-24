@@ -8,96 +8,19 @@
 
 <body class="bg-light">
 
-{% block header%}
-      <div class="">
-        <div class="container">
-          <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="{% url 'base' %}" class="nav-link px-2 link-secondary">Home</a></li>
-                        {% if user.is_authenticated %}
-                          <li><a href="{% url 'profile' %}" class="nav-link px-2 link-dark">Profile</a></li>
-                        {% endif %}
-<!--                    <li><a href="#" class="nav-link px-2 link-dark">About</a></li>-->
-                </ul>
-
-
-                <div class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 link-dark text-decoration-none">
-                   {% if user.is_authenticated %}
-                        {{user.username}}
-                        <div class="col-md-2  px-4">
-                            {% if user.userprofile.avatar %}
-                                <img src="{{user.userprofile.avatar_small.url}}" class="rounded-circle" style="width: 70px;" alt="Avatar" >
-                            {% else %}
-                                <img src="media/default.jpg" class="rounded-circle" style="width: 50px;" alt="Avatar" >
-                            {% endif %}
-                        </div>
-                   {% endif %}
-                </div>
-
-                <div class="col-md-3 text-end">
-                   {% if user.is_authenticated %}
-                      <a class="nav-link px-2" href="{% url 'logout' %}">Logout</a>
-                   {% else %}
-                      <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
-                      <a href="{% url 'register' %}" class="btn btn-primary">Sign-up</a>
-                   {% endif %}
-                </div>
-          </header>
-        </div>
-      </div>
-{% endblock %}
+    <div class="container">
+    {% include 'includes/header.html' %}
+    </div>
 
 
 {% block content %}
-
-
- <div class="container">
-     <div class="row">
-        <div class="col-lg-12 text-center my-2">
-            <h4>Users Photos</h4>
-        </div>
-     </div>
-
-     <div class="portfolio-menu mt-2 mb-4">
-        <ul>
-           <li class="btn btn-outline-dark active">All</li>
-           <li class="btn btn-outline-dark">like</li>
-           <li class="btn btn-outline-dark">Comments</li>
-        </ul>
-     </div>
-
-    <div class="row">
-        {% for img in user_photo %}
-            <div class="col-lg-4">
-                <div class="card">
-                   <a href="{% url 'details_photo' pk=img.id %}" data-toggle="tooltip" title="{{img.description}}">
-                      <img class="card-img-top" src="{{img.image.url}}" alt="{{img.title}}">
-                   </a>
-                    <div class="card-body">
-                        <h5 class="card-title">{{img.title}}</h5>
-                        <p class="text-muted">Author: {{img.user.username}}</p>
-                        <a href="#!" class="btn btn-outline-dark">like</a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
- </div>
-
+<div class="container">
+{% include 'includes/collection.html' %}
+</div>
 {% endblock %}
 
-
-<div class="container">
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-<!--      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>-->
-<!--      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>-->
-<!--      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>-->
-<!--      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>-->
-<!--      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>-->
-    </ul>
-    <p class="text-center text-muted">© 2022 Company, Inc</p>
-  </footer>
-</div>
+    <div class="container">
+    {% include 'includes/footer.html' %}
+    </div>
 </body>
 </html>
