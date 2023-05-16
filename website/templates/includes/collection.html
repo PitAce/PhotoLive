@@ -14,7 +14,37 @@
 </div>
 
 <div class="row">
-    {% for img in user_photo %}
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item ">
+                    <a class="page-link" href="?page=1">&lt;</a>
+                </li>
+                <li class="page-item ">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                </li>
+            {% endif %}
+
+            <li class="page-item disabled">
+                <a class="page-link">{{ page_obj.number }}</a>
+            </li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&gt;</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+<!--retrieve-->
+
+<div class="row">
+    {% for img in page_obj %}
     {% include 'includes/photo/photo.html' %}
     {% endfor %}
 </div>
+

@@ -8,9 +8,9 @@
     {% if user.is_authenticated %}
     <form action="{% url 'like' photo_pk=img.id %}" method="POST">
         {% csrf_token %}
-        <div><button class="btn btn-outline-dark" type="submit">like</button> : {{img.like_count}}</div>
+        <div><button class="btn btn-outline-dark" type="submit">like</button> : {{img.likes.count}}</div>
     </form>
     {% else %}
-    <p>like: {{img.like_count}}</p>
+    <p>like: {{img.likes.count}}</p>
     {% endif %}
 </div>

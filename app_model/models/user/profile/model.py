@@ -27,6 +27,9 @@ class UserProfile(models.Model):
                                   processors=[ResizeToFit(180, 160)],
                                   format='JPEG',
                                   options={'quality': 90})
+
+    class Meta:
+        db_table = 'UserProfile'
     def __str__(self):
         return self.user.username
 
