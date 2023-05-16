@@ -11,9 +11,12 @@ class Photo(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=False)
 
+    class Meta:
+        db_table = 'Photo'
+
     def __str__(self):
         return self.title
 
     def like_count(self):
-        number_of_likes = self.like_set.all().count()
+        number_of_likes = self.likes.all().count()
         return number_of_likes
