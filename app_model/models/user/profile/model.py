@@ -11,7 +11,7 @@ from imagekit.models.fields import ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(MyCustomUser, null=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(MyCustomUser, on_delete=models.CASCADE)
     avatar = models.ImageField(null=True, blank=True, default='default.jpg', upload_to=uploaded_file_path)
     avatar_small = ImageSpecField(source='avatar',
                                   processors=[ResizeToFill(50, 50)],

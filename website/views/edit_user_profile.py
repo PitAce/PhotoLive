@@ -9,7 +9,7 @@ from app_model.models import MyCustomUser, UserProfile
 from website.forms import UpdateUserForm, UpdateUserAvatarForm
 
 class EditUserProfileView(View):
-    template_name = 'website/edit_profile.html'
+    template_name = 'website/user/edit_profile.html'
 
     def get(self, request):
         user_form = UpdateUserForm(instance=request.user)

@@ -8,7 +8,7 @@ from website.forms import RegistrationForm
 
 
 class UserRegistrationView(View):
-    template_name = 'website/register.html'
+    template_name = 'website/user/register.html'
 
     def get(self, request):
         form = RegistrationForm()

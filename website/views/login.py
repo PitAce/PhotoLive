@@ -5,7 +5,7 @@ from django.views import View
 from website.forms import AuthenticationUserForm
 
 class UserLoginView(View):
-    template_name = 'website/login.html'
+    template_name = 'website/user/login.html'
     context = {}
 
     def get(self, request):

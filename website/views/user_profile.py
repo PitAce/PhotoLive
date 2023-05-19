@@ -6,7 +6,7 @@ from app_model.models import UserProfile
 from website.forms import UploadPhotoForm
 
 class UserProfileView(View):
-    template_name = 'website/profile.html'
+    template_name = 'website/user/profile.html'
 
     def get(self, request):
         # user_avatar = UserProfile.objects.get(user_id=request.user.id)

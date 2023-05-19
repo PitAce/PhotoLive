@@ -5,7 +5,7 @@ from app_model.models.photo.model import Photo
 
 
 class ShowDetailsPhotoView(View):
-    template_name = 'website/details_photo.html'
+    template_name = 'website/main/photo/show_details_photo.html'
 
     def get(self, request, *args, **kwargs):
         photo = Photo.objects.get(id=kwargs['pk'])
