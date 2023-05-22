@@ -5,16 +5,18 @@
     </div>
 </div>
 
-<div class="portfolio-menu mt-2 mb-4">
-    <ul>
-       <li class="btn btn-outline-dark active">All</li>
-       <li class="btn btn-outline-dark">like</li>
-       <li class="btn btn-outline-dark">Comments</li>
-    </ul>
-</div>
+<div class="d-flex flex-wrap">
+    <div class="portfolio-menu mt-2 mb-4 col-md-4">
+        <ul>
+           <li class="btn btn-outline-dark active">All</li>
+           <li class="btn btn-outline-dark">like</li>
+           <li class="btn btn-outline-dark">Comments</li>
+        </ul>
+    </div>
 
-<div class="row">
-    {% include 'website/main/pagination.html' %}
+    <div class="mt-2 mb-4 col-md-4">
+        {% include 'website/main/pagination.html' %}
+    </div>
 </div>
 
 <div class="row">
