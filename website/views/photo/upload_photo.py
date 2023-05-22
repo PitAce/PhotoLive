@@ -5,7 +5,7 @@ from django.views import View
 from app_model.models import UserProfile
 from website.forms import UploadPhotoForm
 
-class UserProfileView(View):
+class UploadPhotoView(View):
     template_name = 'website/user/profile.html'
 
     def get(self, request):
