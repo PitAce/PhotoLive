@@ -1,3 +1,4 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from app_model.models.user.my_custom_user import MyCustomUser
 
@@ -10,6 +11,7 @@ class Photo(models.Model):
     image = models.ImageField(upload_to='images/', blank=False, validators=[FileExtensionValidator(allowed_extensions=['jpeg','jpg'])])
     created = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=False)
+    comments = GenericRelation('Comment')
 
     class Meta:
         db_table = 'Photo'
