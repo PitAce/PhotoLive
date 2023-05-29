@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView, TemplateView, DetailView
 from app_model.models.photo.model import Photo
+from app_model.models.photo.comment.model import Comment
 
 
 class ShowDetailsPhotoView(View):
@@ -9,7 +10,10 @@ class ShowDetailsPhotoView(View):
 
     def get(self, request, *args, **kwargs):
         photo = Photo.objects.get(id=kwargs['pk'])
-        return render(request, self.template_name, {'photo': photo})
+        comments = Comment.objects.filter(object_id=kwargs['pk'])
+        # import pdb
+        # pdb.set_trace()
+        return render(request, self.template_name, {'photo': photo, 'comments': comments})
 
     # context_object_name = 'post'
 
