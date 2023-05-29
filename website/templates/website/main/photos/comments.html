@@ -3,46 +3,30 @@
         <h4 class="text-center mb-4 pb-2">Comments on this photo:</h4>
 
         <div class="row">
-            <div class="col">
+            <div class="col mb-4">
                 <div class="d-flex flex-start">
                     <div class="flex-grow-1 flex-shrink-1">
-                          <div>
-                              <div class="d-flex justify-content-between align-items-center">
-                                  <p class="mb-1">
-                                    User1 <span class="small">- 2 hours ago</span>
-                                  </p>
-                                  <a href="#!"><i class="fas fa-reply fa-xs"></i><span class="small"> reply</span></a>
-                              </div>
-                              <p class="small mb-0">
-                              It is a long established fact that a reader will be distracted by
-                              the readable content of a page.
-                              </p>
-                          </div>
-  <!--                    <div class="d-flex flex-start mt-4">-->
-    <!--                      <div class="flex-grow-1 flex-shrink-1 me-3">-->
-      <!--                        <div>-->
-        <!--                          <div class="d-flex justify-content-between align-items-center">-->
-          <!--                            <p class="mb-1">-->
-          <!--                              User2 <span class="small">- 3 hours ago</span>-->
-          <!--                            </p>-->
-        <!--                          </div>-->
-        <!--                          <p class="small mb-0">-->
-        <!--                            letters, as opposed to using 'Content here, content here',-->
-        <!--                            making it look like readable English.-->
-        <!--                          </p>-->
-      <!--                        </div>-->
-    <!--                      </div>-->
-  <!--                    </div>-->
+                        {% for comment in comments %}
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="font-italic text-muted mb-0">- {{comment.author.username}}</p>
+                                <div>
+                                    <span class="small font-italic text-muted mb-2" style="padding-right: 20px;"> {{comment.created}}</span>
+                                    <a href="#!"><i class="fas fa-reply fa-xs"></i><span class="small"> reply</span></a>
+                                </div>
+                            </div>
+                            <p class="mb-0" style="padding-left: 30px;">{{comment.text}}</p>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-
             </div>
         </div>
 
         <div class="d-flex flex-start w-100">
             <div class="form-outline w-100">
-                <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff;"></textarea>
-                <label class="form-label" for="textAreaExample">Message</label>
+                <textarea class="form-control" id="addComment" rows="2" style="background: #fff;" placeholder="New comment..."></textarea>
+<!--                <label class="form-label" for="addComment">add new comment</label>-->
             </div>
         </div>
         <div class="float-end mt-2 pt-1">
