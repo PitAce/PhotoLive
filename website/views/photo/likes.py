@@ -11,6 +11,6 @@ class LikeView(View):
             Like.objects.filter(user=request.user, photo_id=kwargs['photo_pk']).delete()
             return redirect('/')
         else:
-            new_like.liked = True
+            # new_like.liked = True
             new_like.save()
             return redirect('/')

@@ -1,0 +1,88 @@
+<script type="text/javascript">
+    function showHide(element_id) {
+        if (document.getElementById(element_id)) {
+            var obj = document.getElementById(element_id);
+            if (obj.style.display != "block") {
+                obj.style.display = "block";
+            }
+            else obj.style.display = "none";
+        };
+    }
+</script>
+
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-12 col-lg-10 col-xl-8">
+        <h4 class="text-center mb-4 pb-2">Comments on this photo:</h4>
+
+        <div class="row">
+            <div class="col mb-4">
+                <div class="d-flex flex-start">
+                    <div class="flex-grow-1 flex-shrink-1">
+                        {% for comment in comments %}
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="font-italic text-muted mb-0">{{comment.author.username}}: </p>
+                                <div>
+                                    <span class="small font-italic text-muted mb-2" style="padding-right: 20px;">{{comment.created}}</span>
+                                    <a href="javascript:void(0)" onclick="showHide('comment_form_{{comment.id}}')"><i class="fas fa-reply fa-xs"></i><span class="small">comment</span></a>
+                                </div>
+                            </div>
+                            <p class="mb-0" style="padding-left: 30px;">{{comment.text}}</p>
+
+                            <div>
+                                {% for i in comment.comments.all %}
+                                <div class="mb-2 px-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="font-italic text-muted mb-0">{{i.author.username}}: </p>
+                                        <div>
+                                            <span class="small font-italic text-muted mb-2" style="padding-right: 20px;">{{i.created}}</span>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0" style="padding-left: 30px;">{{i.text}}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div id="comment_form_{{comment.id}}" style="display: none;" class="mt-4">
+                                {% include 'website/main/photos/comments/form_comment.html' with comment_id=comment.id content_object_key='comment' %}
+                            </div>
+                            <hr>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block comment %}
+        {% include 'website/main/photos/comments/form_comment.html' with comment_id=0 content_object_key='photo' %}
+        {% endblock %}
+    </div>
+</div>
+
+
+<!--<script type="text/javascript">-->
+<!--    function showHide(element_id) {-->
+<!--        //Если элемент с id-шником element_id существует-->
+<!--        if (document.getElementById(element_id)) {-->
+<!--            //Записываем ссылку на элемент в переменную obj-->
+<!--            var obj = document.getElementById(element_id);-->
+<!--            //Если css-свойство display не block, то:-->
+<!--            if (obj.style.display != "block") {-->
+<!--                obj.style.display = "block"; //Показываем элемент-->
+<!--            }-->
+<!--            else obj.style.display = "none"; //Скрываем элемент-->
+<!--        }-->
+<!--        //Если элемент с id-шником element_id не найден, то выводим сообщение-->
+<!--        else alert("Элемент с id: " + element_id + " не найден!");-->
+<!--    }-->
+<!--</script>-->
+<!--&lt;!&ndash; При клике запускаем функцию showHide, и передаем параметр-->
+<!--        id-шник элемента который нужно показать/скрыть &ndash;&gt;-->
+<!--        <a href="javascript:void(0)" onclick="showHide('block_id')">Скрыть/Показать элемент</a><br/><br/>-->
+<!--        <div id="block_id" style="display: none;">-->
+<!--            Тут любой текст и html код<br/>-->
+<!--            <br/>-->
+<!--            Дизайн студия OX2 разрабатывает сайты и интернет магазины любой сложности. <br/>-->
+<!--            По низким ценам!-->
+<!--        </div>-->
+
