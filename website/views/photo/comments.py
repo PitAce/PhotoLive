@@ -9,9 +9,16 @@ class CommentView(View):
 
     def post(self, request, *args, **kwargs):
         form = CommentForm(request.POST)
+        # import pdb
+        # pdb.set_trace()
+        if kwargs['content_object_key'] == 'photo':
+            content_object = Photo.objects.get(id=kwargs['photo_id'])
+        else:
+            content_object = Comment.objects.get(id=kwargs['comment_id'])
+
         if form.is_valid():
-            Comment.objects.create(content_object=Photo.objects.get(id=kwargs['id']),
-                                        photo_id=kwargs["id"],
+            Comment.objects.create(content_object=content_object,
+                                        photo_id=kwargs["photo_id"],
                                         text=form.cleaned_data['text'],
                                         author_id=request.user.id,)
-        return redirect('details_photo', pk=kwargs['id'])
+        return redirect('details_photo', pk=kwargs['photo_id'])
