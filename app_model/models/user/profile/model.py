@@ -28,10 +28,12 @@ class UserProfile(models.Model):
                                   format='JPEG',
                                   options={'quality': 90})
 
-    class Meta:
-        db_table = 'UserProfile'
     def __str__(self):
         return self.user.username
+
+    class Meta:
+        db_table = 'UserProfile'
+
 
 
 

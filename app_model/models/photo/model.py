@@ -13,12 +13,9 @@ class Photo(models.Model):
     description = models.TextField(blank=False)
     comments = GenericRelation('Comment')
 
-    class Meta:
-        db_table = 'Photo'
 
     def __str__(self):
         return self.title
 
-    # def like_count(self):
-    #     number_of_likes = self.likes.all().count()
-    #     return number_of_likes
+    class Meta:
+        db_table = 'Photo'

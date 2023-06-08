@@ -4,7 +4,6 @@ from django.db import models
 class Like(models.Model):
     user = models.ForeignKey('MyCustomUser', on_delete=models.CASCADE, related_name='likes')
     photo = models.ForeignKey('Photo', on_delete=models.CASCADE, related_name='likes')
-    # liked = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'Like'

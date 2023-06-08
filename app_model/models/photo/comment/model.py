@@ -14,10 +14,12 @@ class Comment(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 
+    def __str__(self):
+        return f'Comments by {self.author}'
+
     class Meta:
         db_table = 'Comments'
         ordering = ('created',)
 
-    def __str__(self):
-        return f'Comments by {self.author}'
+
 
