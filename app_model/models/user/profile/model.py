@@ -40,7 +40,7 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=MyCustomUser)
 def create_user_profile(sender, instance, created, **kwargs):
     try:
-        instance.userprofile.save()
+        instance.user_profile.save()
     except ObjectDoesNotExist:
         UserProfile.objects.create(user=instance)
 
