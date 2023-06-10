@@ -6,10 +6,10 @@ from django.core.validators import FileExtensionValidator
 
 
 class Photo(models.Model):
-    user = models.ForeignKey(MyCustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey('MyCustomUser', on_delete=models.CASCADE, related_name='photos')
     title = models.CharField(max_length=100, blank=False)
     image = models.ImageField(upload_to='images/', blank=False, validators=[FileExtensionValidator(allowed_extensions=['jpeg','jpg'])])
-    created = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=False)
     comments = GenericRelation('Comment')
 
@@ -18,4 +18,4 @@ class Photo(models.Model):
         return self.title
 
     class Meta:
-        db_table = 'Photo'
+        db_table = 'photo'

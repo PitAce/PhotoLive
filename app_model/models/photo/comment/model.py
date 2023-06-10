@@ -6,8 +6,8 @@ from django.db import models
 class Comment(models.Model):
     photo = models.ForeignKey('Photo', on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey('MyCustomUser', on_delete=models.CASCADE, related_name='comments')
-    text = models.TextField(blank=True)
-    created = models.DateTimeField(auto_now_add=True)
+    text = models.TextField(blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
     comments = GenericRelation('self')
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
@@ -18,8 +18,8 @@ class Comment(models.Model):
         return f'Comments by {self.author}'
 
     class Meta:
-        db_table = 'Comments'
-        ordering = ('created',)
+        db_table = 'comments'
+        ordering = ('created_at',)
 
 
 

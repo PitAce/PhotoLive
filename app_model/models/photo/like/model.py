@@ -6,4 +6,4 @@ class Like(models.Model):
     photo = models.ForeignKey('Photo', on_delete=models.CASCADE, related_name='likes')
 
     class Meta:
-        db_table = 'Like'
+        db_table = 'like'
