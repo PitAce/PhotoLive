@@ -13,8 +13,6 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-md-12 col-lg-10 col-xl-8">
-        <h4 class="text-center mb-4 pb-2">Comments on this photo:</h4>
-
         <div class="row">
             <div class="col mb-4">
                 <div class="d-flex flex-start">
@@ -49,7 +47,7 @@
                             </div>
 
                             <div id="comment_form_{{comment.id}}" style="display: none;" class="mt-4">
-                                {% include 'website/main/photos/comments/form_comment.html' with comment_id=comment.id content_object_key='comment' %}
+                                {% include 'website/main/photos/comments/form_comment.html' with content_type='comment' content_id=comment.id %}
                             </div>
                             <hr>
                         </div>
@@ -59,7 +57,7 @@
             </div>
         </div>
         {% block comment %}
-        {% include 'website/main/photos/comments/form_comment.html' with comment_id=0 content_object_key='photo' %}
+        {% include 'website/main/photos/comments/form_comment.html' with content_type='photo' content_id=photo.id %}
         {% endblock %}
     </div>
 </div>
