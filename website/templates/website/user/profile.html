@@ -10,8 +10,8 @@
             <div class="card mb-4 mb-xl-0 text-center">
                 <div class="card-header font-italic mb-2">{{user.username.capitalize}}</div>
                 <div class="card-body text-center">
-                    {% if user.userprofile.avatar %}
-                        <img class="img-account-profile rounded-circle mb-2" src="{{user.userprofile.avatar_medium.url}}" alt="avatar">
+                    {% if user.user_profile.avatar %}
+                        <img class="img-account-profile rounded-circle mb-2" src="{{user.user_profile.avatar_medium.url}}" alt="avatar">
                     {% else %}
                          <img src="media/default.jpg" class="rounded-circle" style="width: 50px;" alt="Avatar" >
                     {% endif %}

@@ -1,9 +1,8 @@
 from django.db import models
-# from app_model.models import MyCustomUser, Photo
 
 class Like(models.Model):
-    user = models.ForeignKey('MyCustomUser', on_delete=models.CASCADE, related_name='likes')
-    photo = models.ForeignKey('Photo', on_delete=models.CASCADE, related_name='likes')
+    user = models.ForeignKey('MyCustomUser', on_delete=models.CASCADE, related_name='likes', related_query_name='likes')
+    photo = models.ForeignKey('Photo', on_delete=models.CASCADE, related_name='likes', related_query_name='likes')
 
     class Meta:
         db_table = 'like'

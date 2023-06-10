@@ -13,7 +13,7 @@ class MyCustomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
-    liked_photos = models.ManyToManyField('Photo', related_name='liked_users', related_query_name="liked_users", through='Like')
+    liked_photos = models.ManyToManyField('Photo', related_name='liked_users', related_query_name="liked_users", through='like')
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['username']

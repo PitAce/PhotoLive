@@ -1,6 +1,5 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
-from app_model.models.user.my_custom_user import MyCustomUser
 
 from django.core.validators import FileExtensionValidator
 
