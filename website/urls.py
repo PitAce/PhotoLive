@@ -1,24 +1,25 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
 
-from .views import (UserLogoutView, BaseView, UserLoginView,
-                    UserRegistrationView, ShowDetailsPhotoView,
+from .views import (UserLogoutView, UserLoginView,
+                    UserRegistrationView,
                     EditUserProfileView, UploadPhotoView, LikeView, CommentView
                     )
-
+from .views.photo import PhotoListCreateView, RetrieveUpdateDeletePhotoView
 
 urlpatterns = [
-    path('', BaseView.as_view()),
-    path('register/', UserRegistrationView.as_view(), name='register'),
+    # user
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
-    path('profile/', login_required(UploadPhotoView.as_view()), name='profile'),
-
+    path('register/', UserRegistrationView.as_view(), name='register'),
+    path('upload_photo/', login_required(UploadPhotoView.as_view()), name='upload_photo'),
     path('edit_profile/', login_required(EditUserProfileView.as_view()), name='edit_profile'),
-
-    path('photo/<int:pk>/', ShowDetailsPhotoView.as_view(), name='details_photo'),
-    path('photo/<int:photo_id>/<slug:content_type>/<int:content_id>/comments', CommentView.as_view(), name='add_comment'),
-    path('like/<int:photo_pk>/', LikeView.as_view(), name='like'),
-
+    # photo
+    path('photos/', PhotoListCreateView.as_view(), name='photo_list_create'),
+    path('photo/<int:pk>/', RetrieveUpdateDeletePhotoView.as_view(), name='retrieve_update_delete_photo'),
+    # photo details
+    path('<str:content_type>/<int:content_id>/comments', CommentView.as_view(), name='add_comment'),
+    path('photo/<int:photo_pk>/likes', LikeView.as_view(), name='like'),
+    # social-auth
     path('social-auth/', include('social_django.urls', namespace='social')),
 ]
