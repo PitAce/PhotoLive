@@ -12,17 +12,16 @@ from django.db.models import Count
 class PhotoListCreateView(View):
     template_name = 'website/base.html'
     def get(self, request, *args, **kwargs):
-
-        if 'order_photo_by' in request.GET:
-            sort = request.GET.get('order_photo_by')
-            # import pdb
-            # pdb.set_trace()
-            if sort == 'created_at':
-                all_users_photos = Photo.objects.all().order_by("-" + sort)
+        # sort_photo
+        all_users_photos = Photo.objects.all()
+        if 'choice_sort_photos_by' in request.GET:
+            request.session['sort_by'] = request.GET.get('choice_sort_photos_by')
+            request.session.modified = True
+        if 'sort_by' in request.session:
+            if request.session['sort_by'] == 'created_at':
+                all_users_photos = Photo.objects.all().order_by("-" + request.session['sort_by'])
             else:
-                all_users_photos = Photo.objects.all().annotate(sort_photo_list=Count(sort)).order_by('-sort_photo_list')
-        else:
-            all_users_photos = Photo.objects.all()
+                all_users_photos = Photo.objects.all().annotate(sort_photo_list=Count(request.session.get('sort_by'))).order_by('-sort_photo_list')
 
         form = UploadPhotoForm()
         paginator = Paginator(all_users_photos, 3)
