@@ -1,5 +1,5 @@
 
-<form action="{% url 'add_comment'  content_type=content_type content_id=content_id %}" method="post">
+<form action="{% url 'add_comment' content_type=content_type content_id=content_id %}" method="post">
     {% csrf_token %}
     <div class="d-flex flex-start w-100">
         <div class="form-outline w-100">

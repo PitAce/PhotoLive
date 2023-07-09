@@ -26,8 +26,11 @@
                                 </div>
                                 {% if user.is_authenticated %}
                                     <div class="d-flex justify-content-end mb-2">
+                                        {% if user.username == comment.author.username %}
+                                        <button class="btn btn-primary ">delete</button>
+                                        {% endif %}
                                         <span class="small font-italic text-muted mb-2" style="padding-right: 20px;">{{comment.created}}</span>
-                                        <a href="javascript:void(0)" onclick="showHide('comment_form_{{comment.id}}')"><i class="fas fa-reply fa-xs"></i><span class="small">comment</span></a>
+                                        <a href="javascript:void(0)" onclick="showHide('comment_form_{{comment.id}}')"><i class="fas fa-reply fa-xs"></i><span class="small"><button class="btn btn-primary ">comment</button></span></a>
                                     </div>
                                 {% endif %}
                             </div>

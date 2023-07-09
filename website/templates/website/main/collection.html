@@ -24,12 +24,13 @@
 
 
 <div class="d-flex flex-wrap">
-    <div class="mt-2 mb-4 col-md-11">
+    <div class="mt-2 mb-4 mx-3 py-2">Sort:</div>
+    <div class="mt-2 mb-4 col-md-10">
         <form method="get">{% csrf_token %}
             <div class="btn-group" role="group" aria-label="Простой пример">
-              <button type="submit" class="btn btn-outline-dark" name="order_photo_by" value="likes">Likes</button>
-              <button type="submit" class="btn btn-outline-dark" name="order_photo_by" value="created_at">Date</button>
-              <button type="submit" class="btn btn-outline-dark" name="order_photo_by" value="comments">Comments</button>
+              <button type="submit" class="btn btn-outline-dark" name="choice_sort_photos_by" value="likes">Likes</button>
+              <button type="submit" class="btn btn-outline-dark" name="choice_sort_photos_by" value="created_at">Date</button>
+              <button type="submit" class="btn btn-outline-dark" name="choice_sort_photos_by" value="comments">Comments</button>
             </div>
         </form>
     </div>

@@ -18,3 +18,10 @@ class CommentView(View):
                                    author_id=request.user.id,)
         return redirect('retrieve_update_delete_photo', pk=photo_id)
 
+    # def delete(self, request, *args, **kwargs):
+    #     form = CommentForm(request.POST)
+    #     if form.is_valid():
+    #         content_object = self.ACCEPTABLE_TYPES[kwargs['content_type']].objects.get(id=kwargs['content_id'])
+    #         photo_id = kwargs["content_id"] if kwargs["content_type"] == "photo" else content_object.photo_id
+    #     return redirect('retrieve_update_delete_photo', pk=photo_id)
+

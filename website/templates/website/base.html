@@ -8,22 +8,28 @@
 </head>
 
 <body class="bg-light">
+<!--        <div class="bg-image text-center shadow-1-strong rounded  text-white" style="background-image: url('https://pibig.info/uploads/posts/2022-08/1659356915_2-pibig-info-p-fon-seroe-derevo-krasivo-2.jpg');">-->
+
     <div class=".container-fluid">
-        <div class="container">
-        {% include 'website/header.html' %}
-        </div>
+<!--          <div class="mask px-0" style="background-color: rgba(80, 30, 0, 0.75);">-->
+
+            <div class="container">
+            {% include 'website/header.html' %}
+            </div>
+
+            {% block content %}
+            <div class="container">
+            {% include 'website/main/collection.html' %}
+            </div>
+            {% endblock %}
+
+            <div class="container">
+            {% include 'website/footer.html' %}
+            </div>
 
 
-        {% block content %}
-        <div class="container">
-        {% include 'website/main/collection.html' %}
-        </div>
-        {% endblock %}
-
-
-        <div class="container">
-        {% include 'website/footer.html' %}
-        </div>
+  </div>
+<!--        </div>-->
     </div>
 </body>
 </html>
