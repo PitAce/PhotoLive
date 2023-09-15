@@ -20,10 +20,11 @@ from django.views.generic import TemplateView, RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 
+from website.views.photo import PhotoListCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='website/photos'), name='base'),
+    path('', PhotoListCreateView.as_view(), name='base'),
     path('website/', include('website.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

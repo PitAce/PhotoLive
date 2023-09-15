@@ -14,22 +14,23 @@ class PhotoListCreateView(View):
     def get(self, request, *args, **kwargs):
         # sort_photo
         all_users_photos = Photo.objects.all()
-        if 'choice_sort_photos_by' in request.GET:
-            request.session['sort_by'] = request.GET.get('choice_sort_photos_by')
-            request.session.modified = True
-        if 'sort_by' in request.session:
-            if request.session['sort_by'] == 'created_at':
-                all_users_photos = Photo.objects.all().order_by("-" + request.session['sort_by'])
-            else:
-                all_users_photos = Photo.objects.all().annotate(sort_photo_list=Count(request.session.get('sort_by'))).order_by('-sort_photo_list')
-
-        form = UploadPhotoForm()
+        # if 'choice_sort_photos_by' in request.GET:
+        #     request.session['sort_by'] = request.GET.get('choice_sort_photos_by')
+        #     request.session.modified = True
+        # #  QUERY!!!
+        # if 'sort_by' in request.session:
+        #     if request.session['sort_by'] == 'created_at':
+        #         all_users_photos = Photo.objects.all().order_by("-" + request.session['sort_by'])
+        #     else:
+        #         all_users_photos = Photo.objects.all().annotate(sort_photo_list=Count(request.session.get('sort_by'))).order_by('-sort_photo_list')
+        #
+        # form = UploadPhotoForm()
         paginator = Paginator(all_users_photos, 3)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         # import pdb
         # pdb.set_trace()
-        return render(request, self.template_name, {'page_obj': page_obj, "form": form})
+        return render(request, self.template_name, {'page_obj': page_obj, "form": 0})#form})
 
     def post(self, request, *args, **kwargs):
         form = UploadPhotoForm(request.POST, request.FILES)

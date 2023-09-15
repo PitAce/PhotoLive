@@ -8,3 +8,4 @@ from website.views.user.edit_user_profile import EditUserProfileView #edit_user_
 
 from website.views.photos.likes import LikeView
 from website.views.photos.comments import CommentView
+from website.views.photos.search import SearchPhotoView

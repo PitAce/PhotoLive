@@ -3,7 +3,7 @@ from django.urls import path, include
 
 from .views import (UserLogoutView, UserLoginView,
                     UserRegistrationView,
-                    EditUserProfileView, UploadPhotoView, LikeView, CommentView
+                    EditUserProfileView, UploadPhotoView, LikeView, CommentView, SearchPhotoView
                     )
 from .views.photo import PhotoListCreateView, RetrieveUpdateDeletePhotoView
 
@@ -16,6 +16,7 @@ urlpatterns = [
     path('edit_profile/', login_required(EditUserProfileView.as_view()), name='edit_profile'),
     # photo
     path('photos/', PhotoListCreateView.as_view(), name='photo_list_create'),
+    path('photos/search/', SearchPhotoView.as_view(), name='search_photo'),
     path('photo/<int:pk>/', RetrieveUpdateDeletePhotoView.as_view(), name='retrieve_update_delete_photo'),
     # photo details
     path('<str:content_type>/<int:content_id>/comments', CommentView.as_view(), name='add_comment'),

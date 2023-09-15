@@ -6,7 +6,7 @@ from django.db import models
 class Comment(models.Model):
     photo = models.ForeignKey('Photo', on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey('MyCustomUser', on_delete=models.CASCADE, related_name='comments')
-    text = models.TextField(blank=False)
+    text = models.TextField(blank=False) # Null=False
     created_at = models.DateTimeField(auto_now_add=True)
     comments = GenericRelation('self')
 
