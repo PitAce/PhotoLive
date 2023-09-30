@@ -27,13 +27,16 @@
 <div class="d-flex flex-wrap">
     <div class="mt-2 mb-4 mx-3 py-2">Sort:</div>
         <div class="mt-2 mb-4 col-md-3">
-            <form method="get" action="{% url 'photo_list_create' %}">{% csrf_token %}
-                <div class="btn-group" role="group">
-                  <button type="submit" class="btn btn-outline-dark" name="choice_sort_photos_by" value="likes">Likes</button>
-                  <button type="submit" class="btn btn-outline-dark" name="choice_sort_photos_by" value="created_at">Date</button>
-                  <button type="submit" class="btn btn-outline-dark" name="choice_sort_photos_by" value="comments">Comments</button>
-                </div>
-            </form>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                {{text_for_sort_buttom}}
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{% url 'photo_list_create' sort_by='likes'%}">likes</a></li>
+                <li><a class="dropdown-item" href="{% url 'photo_list_create' sort_by='created_at'%}">date</a></li>
+                <li><a class="dropdown-item" href="{% url 'photo_list_create' sort_by='comments'%}">comments</a></li>
+              </ul>
+            </div>
         </div>
 
     <div class="mt-2 mb-4 col-md-3">

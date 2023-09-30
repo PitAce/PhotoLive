@@ -8,32 +8,31 @@ from app_model.models.photo.model import Photo
 
 from website.forms import UploadPhotoForm, CommentForm
 from django.db.models import Count
+from website.services.sort_photo_by_user_choise import sort_photo
+
 
 class PhotoListCreateView(View):
     template_name = 'website/base.html'
     def get(self, request, *args, **kwargs):
-        # sort_photo
-        all_users_photos = Photo.objects.all()
-        # if 'choice_sort_photos_by' in request.GET:
-        #     request.session['sort_by'] = request.GET.get('choice_sort_photos_by')
-        #     request.session.modified = True
-        # #  QUERY!!!
-        # if 'sort_by' in request.session:
-        #     if request.session['sort_by'] == 'created_at':
-        #         all_users_photos = Photo.objects.all().order_by("-" + request.session['sort_by'])
-        #     else:
-        #         all_users_photos = Photo.objects.all().annotate(sort_photo_list=Count(request.session.get('sort_by'))).order_by('-sort_photo_list')
-        #
-        # form = UploadPhotoForm()
+        context = {}
+        context['text_for_sort_buttom'] = 'по умолчанию'  # this is a temporary solution
+
+        if 'sort_by' in kwargs:
+            all_users_photos = sort_photo(kwargs['sort_by'])
+            context['text_for_sort_buttom'] = kwargs['sort_by']  # this is a temporary solution
+        else:
+            all_users_photos = Photo.objects.all()
+
         paginator = Paginator(all_users_photos, 3)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
-        # import pdb
-        # pdb.set_trace()
-        return render(request, self.template_name, {'page_obj': page_obj, "form": 0})#form})
+
+        context['page_obj'] = page_obj
+        return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         form = UploadPhotoForm(request.POST, request.FILES)
+
         if form.is_valid():
             user_img = form.save(commit=False)
             user_img.user = request.user

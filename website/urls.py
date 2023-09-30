@@ -16,6 +16,7 @@ urlpatterns = [
     path('edit_profile/', login_required(EditUserProfileView.as_view()), name='edit_profile'),
     # photo
     path('photos/', PhotoListCreateView.as_view(), name='photo_list_create'),
+    path('photos/sort_by/<slug:sort_by>/', PhotoListCreateView.as_view(), name='photo_list_create'),
     path('photos/search/', SearchPhotoView.as_view(), name='search_photo'),
     path('photo/<int:pk>/', RetrieveUpdateDeletePhotoView.as_view(), name='retrieve_update_delete_photo'),
     # photo details
